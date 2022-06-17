@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "260576987627",
+    "project_id": "todo-react-native-17c03",
+    "storage_bucket": "todo-react-native-17c03.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:260576987627:android:c8bb220054997bf7fa71ae",
+        "android_client_info": {
+          "package_name": "com.todo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "260576987627-r2nlp7q56go68qeudagmbenh6i1v7od0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDUzDlOL0pYEgtT9KmbdUvy7gsOWGhgQdY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "260576987627-r2nlp7q56go68qeudagmbenh6i1v7od0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

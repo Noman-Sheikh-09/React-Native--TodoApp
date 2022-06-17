@@ -34,6 +34,12 @@ export const style = StyleSheet.create({
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
   },
+  topTitle:{
+
+    alignSelf:'center'
+    
+  
+  },
   goSignup: {
     color: 'black',
     alignSelf: 'center',
