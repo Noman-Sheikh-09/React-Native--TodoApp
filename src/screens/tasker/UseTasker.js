@@ -1,13 +1,21 @@
-import {View, Text} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchData } from '../../store/todoSlice';
 export default function UseTasker() {
-
+  const tasksData = useSelector(state=>state.todo.todo)
+  console.log(tasksData);
+const dispatch = useDispatch();
+useEffect(()=>{
+dispatch(fetchData())
+},[])
   const navigate = useNavigation();
   const adddTaskHandler = () => {
     navigate.navigate('Form');
   };
+  
   return {
     adddTaskHandler,
+    tasksData,
   };
 }

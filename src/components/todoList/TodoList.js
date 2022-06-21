@@ -1,32 +1,39 @@
 import {View, Text} from 'react-native';
 import React from 'react';
-import {useEffect} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
-import todoSlice, {getData} from '../../store/todoSlice';
 
-export default function TodoList() {
-  // const todo = useSelector(state => state.todo.todo);
-  // console.log(todo);
-
-  const dispatch = -useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(getData());
-  // });
-
+export default function TodoList({singleTodo}) {
   return (
-    <View>
-      <Text>
-        {/* {todo.map(singleTodo => {
-          return (
-            <View key={singleTodo.uid}>
-              <Text>{singleTodo.task}</Text>
-              <Text>{singleTodo.description}</Text>
-            </View>
-          );
-        })} */}
-      </Text>
-      <Text>Description</Text>
+    <View
+      style={{
+        height: 'auto',
+        backgroundColor: 'white',
+        borderRadius: 5,
+        paddingTop: 7,
+        paddingBottom: 7,
+        paddingLeft: 7,
+        marginBottom: 10,
+        shadowColor: '#000',
+        shadowOffset: {
+          width: 0,
+          height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+
+        elevation: 5,
+      }}>
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'flex-end',
+          width: '90%',
+          // textDecorationLine: data.TaskComplete ? 'line-through' : null
+        }}>
+        <Text style={{marginLeft: 10, fontSize: 16}}>{singleTodo?.task}</Text>
+      </View>
+      {/* <Text style={{ color: '#FF6347', marginLeft: 40,  }}>
+             {singleTodo?.date}, {singleTodo?.time}
+            </Text> */}
     </View>
   );
 }

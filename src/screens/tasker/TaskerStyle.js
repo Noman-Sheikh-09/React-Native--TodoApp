@@ -8,32 +8,54 @@ export const style = StyleSheet.create({
   },
   addTaskBtn: {
     color: 'white',
+    backgroundColor:"#800080",
     fontSize: 15,
-    padding:10,
+    padding: 10,
+    paddingLeft:20,
+    paddingRight:20,
     textAlign: 'center',
     flexDirection: 'row',
     justifyContent: 'center',
     alignSelf: 'center',
     marginLeft: 90,
+    borderRadius:30
   },
   btnView: {
+    flex: 0.15,
+    flexDirection: 'row',
+    borderRadius: 30,
+  },
+  headerContainer: {
+    flex: 0.15,
+    justifyContent: 'center',
+  },
+  headerRow: {
     display: 'flex',
     flexDirection: 'row',
-    backgroundColor: '#800080',
-    borderRadius: 30,
-    marginTop: 525,
-  },
-  header: {
-    marginTop: 50,
+    width: '90%',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
   btnAddNew: {
     color: 'white',
     marginLeft: 30,
-   
-
   },
   todo: {
     color: '#800080',
     fontSize: 20,
   },
+  taskContainer: {
+    flex: 0.5,
+  },
+  calenderConatiner: {
+    width: '90%',
+    marginRight: 'auto',
+    marginLeft: 'auto',
+    flex: 0.2,
+  },
+  totalTaskContainer:{
+    width:'90%',
+    marginLeft:'auto',
+    marginRight:'auto',
+  }
 });

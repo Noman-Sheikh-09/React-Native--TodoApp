@@ -11,25 +11,27 @@ export default function Form() {
     setTask,
     description,
     setDescription,
-    ctaAddHandler
-    // isDatePickerVisible,
-    // setDatePickerVisibility,
-    // isTimePickerVisible,
-    // setTimePickerVisibility,
-    // date,
-    // setDate,
-    // time,
-    // setTime,
-    // showDatePicker,
-    // hideDatePicker,
-    // handleConfirm,
-    // showTimePicker,
-    // hideTimePicker,
-    // handleTimeConfirm,
-    // getTime,
-    // getDate,
-   ] = UseForm();
-console.log(task, description);
+    ctaAddHandler,
+    addTaskLoading,
+    setAddTaskLoading,
+    isDatePickerVisible,
+    setDatePickerVisibility,
+    isTimePickerVisible,
+    setTimePickerVisibility,
+    date,
+    setDate,
+    time,
+    setTime,
+    showDatePicker,
+    hideDatePicker,
+    handleConfirm,
+    showTimePicker,
+    hideTimePicker,
+    handleTimeConfirm,
+    getTime,
+    getDate,
+  ] = UseForm();
+
   return (
     <View style={{flex: 1}}>
       <View style={{marginTop: 20}}>
@@ -41,7 +43,7 @@ console.log(task, description);
           placeholder="Task"
           style={style.input}
           defaultValue={task}
-          onChangeText={(task) => setTask(task)}
+          onChangeText={task => setTask(task)}
         />
       </View>
       <View style={{paddingLeft: 10, paddingRight: 10, marginTop: 50}}>
@@ -50,15 +52,16 @@ console.log(task, description);
           placeholder="Description"
           style={style.input}
           defaultValue={description}
-          onChangeText={(description) => setDescription(description)}
+          onChangeText={description => setDescription(description)}
         />
       </View>
       {/* Calender  */}
-      {/* <View>
+      <View>
         <TextInput
           placeholder="Set Your Date"
           style={style.input}
           value={getDate()}
+          onPressIn={showDatePicker}
         />
         <View
           style={{
@@ -93,6 +96,7 @@ console.log(task, description);
           placeholder="Set Your Time"
           style={style.input}
           value={getTime()}
+          onPressIn={showTimePicker}
         />
         <View>
           <TimeIcon
@@ -109,7 +113,7 @@ console.log(task, description);
             onCancel={hideTimePicker}
           />
         </View>
-      </View> */}
+      </View>
 
       <View style={style.checkIconView}>
         <TouchableOpacity onPress={ctaAddHandler}>

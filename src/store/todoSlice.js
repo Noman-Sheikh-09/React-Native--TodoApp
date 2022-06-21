@@ -3,10 +3,11 @@ import {db} from '../config/Firebase';
 
 // fetch Data from Firebase
 
-export const getData = createAsyncThunk('todoSlice/getData', async () => {
+export const fetchData = createAsyncThunk("todo/fetchData", async () => {
+ 
   const data = [];
   const snapShot = await db.collection('Tasks').get();
-  snapShot.forEach(childTodo => {
+  snapShot.forEach((childTodo) => {
     data.push({...childTodo.data(), uid: childTodo.id});
   });
   return data;
@@ -17,9 +18,10 @@ export const getData = createAsyncThunk('todoSlice/getData', async () => {
 export const addData = createAsyncThunk(
   'todoSlice/addData',
   async (data, navigate) => {
+
     await db.collection('Tasks').add(data);
     localData = {...todo, uid: data.id};
-    navigate.replace('Tasker');
+    // navigate.replace('Tasker');
 
     return localData;
   },
@@ -34,16 +36,16 @@ const todoSlice = createSlice({
   },
   reducers: {},
   extraReducers: {
-    [getData.fulfilled]: (state, action) => {
+    [fetchData.fulfilled]: (state, action) => {
       state.todo = action.payload;
       state.pending = false;
     },
-    [getData.rejected]: (state, action) => {
+    [fetchData.rejected]: (state, action) => {
       state.error = true;
       state.pending = true;
     },
 
-    [getData.pending]: (state, action) => {
+    [fetchData.pending]: (state, action) => {
       state.pending = true;
     },
     [addData.fulfilled]: (state, action) => {

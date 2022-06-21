@@ -2,16 +2,40 @@ import {useNavigation} from '@react-navigation/native';
 import {useState} from 'react';
 import {Alert} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
-import { addData } from '../../store/todoSlice';
+import {addData} from '../../store/todoSlice';
 export default function UseForm() {
   const dispatch = useDispatch();
   const navigate = useNavigation();
   const [task, setTask] = useState('');
+  const [addTaskLoading, setAddTaskLoading] = useState(false);
   const [description, setDescription] = useState('');
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
+  // const year= date.getFullYear();
+  // const month=date.getMonth()+1;
+  // const currentDate= date.getDate();
+  // const hours=timeDgetHDurs();
+  // const minutes=time.getMinutes();
+
+  // const dateData = new Date(year,month,currentDate,hours,minutes).toISOString();
+  // uid: uid,
+  // start: dateData,
+  // date: getDate(),
+  // time: getTime()
+  const ctaAddHandler = () => {
+    let todoData = {
+      task,
+      description,
+    };
+    dispatch(addData(todoData, navigate));
+
+    setTask('');
+    setDescription('');
+    // setDate('');
+    // setTime('');
+  };
 
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -53,45 +77,6 @@ export default function UseForm() {
         : '';
     }
   };
-  const ctaAddHandler=()=>{
-    let todoData ={
-task,
-description,
-    }
-dispatch(addData(todoData,navigate));
-
-setTask('');
-setDescription('');
-  }
-  // const ctaSubmitHandler = () => {
-  //   if (title != '' && time != '' && date != '') {
-  //     const year = date.getFullYear();
-  //     const month = date.getMonth();
-  //     const currentDate = date.getDate();
-  //     const hours = time.getHours();
-  //     const minutes = time.getMinutes();
-  //     const dateData = new Date(
-  //       year,
-  //       month,
-  //       currentDate,
-  //       hours,
-  //       minutes,
-  //     ).toISOString();
-
-  //     let data = {
-  //       title,
-  //       description,
-  //       // uid will be here
-  //       start: dateData,
-  //       date: getDate(),
-  //       time: getTime(),
-  //     };
-
-  //     // dispatch(data, navigate);
-  //   } else {
-  //     Alert.alert('Fill All the Feilds');
-  //   }
-  // };
 
   const getTime = () => {
     let tempTime = time.toString().split(' ');
@@ -103,22 +88,23 @@ setDescription('');
     description,
     setDescription,
     ctaAddHandler,
-    // isDatePickerVisible,
-    // setDatePickerVisibility,
-    // isTimePickerVisible,
-    // setTimePickerVisibility,
-    // date,
-    // setDate,
-    // time,
-    // setTime,
-    // showDatePicker,
-    // hideDatePicker,
-    // handleConfirm,
-    // showTimePicker,
-    // hideTimePicker,
-    // handleTimeConfirm,
-    // getTime,
-    // getDate,
-    
-  ]
+    addTaskLoading,
+    setAddTaskLoading,
+    isDatePickerVisible,
+    setDatePickerVisibility,
+    isTimePickerVisible,
+    setTimePickerVisibility,
+    date,
+    setDate,
+    time,
+    setTime,
+    showDatePicker,
+    hideDatePicker,
+    handleConfirm,
+    showTimePicker,
+    hideTimePicker,
+    handleTimeConfirm,
+    getTime,
+    getDate,
+  ];
 }
