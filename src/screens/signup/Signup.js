@@ -7,6 +7,11 @@ export default function Signup() {
   return (
     <View style={style.loginContainer}>
       <View style={{flex: 1}}></View>
+      <View style={style.topTitle}>
+        <Text style={{color: 'white', fontWeight: 'bold', fontSize: 30}}>
+          Welcome!
+        </Text>
+      </View>
       <View style={style.loginFooter}>
         <View style={style.inputContainer}>
           <TextInput placeholder="First Name" style={style.fnameFeild} />

@@ -1,14 +1,15 @@
 import * as React from 'react';
-import {Provider} from 'react-redux'
-import Store from './src/config/Store'
+import {NavigationContainer} from '@react-navigation/native';
+import store from './src/config/store';
 import StackNavigation from './src/navigation/StackNavigation';
+import {Provider} from 'react-redux';
+
 export default function App() {
-
   return (
-
-  <Provider store = {Store}>
-  <StackNavigation />
-  </Provider>
-
+    <Provider store={store}>
+      <NavigationContainer>
+        <StackNavigation />
+      </NavigationContainer>
+    </Provider>
   );
 }

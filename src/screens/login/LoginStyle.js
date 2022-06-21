@@ -36,7 +36,9 @@ export const style = StyleSheet.create({
   },
   topTitle:{
 
-    alignSelf:'center'
+  
+   
+    
     
   
   },
