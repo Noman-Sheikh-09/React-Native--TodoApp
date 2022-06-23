@@ -1,4 +1,4 @@
-import {View, Text, TouchableOpacity,ScrollView} from 'react-native';
+import {View, Text, TouchableOpacity,ScrollView, Modal} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {style} from './TaskerStyle';
@@ -6,7 +6,7 @@ import UseTasker from './UseTasker';
 import TodoList from '../../components/todoList/TodoList';
 
 export default function Tasker() {
-  const {adddTaskHandler,tasksData} = UseTasker();
+  const {adddTaskHandler,tasksData,navigate} = UseTasker();
   return (
     <View style={style.taskerContainer}>
       <View style={style.headerContainer}>
@@ -53,8 +53,8 @@ export default function Tasker() {
       <View style={style.btnView}>
         <TouchableOpacity onPress={adddTaskHandler} >
           <Text style={style.addTaskBtn}>
-            <Icon name="plus" size={20} style={style.btnAddNew} />
-            Add New Task
+            {/* <Icon name="plus" size={20} style={style.btnAddNew} /> */}
+          + Add New Task
           </Text>
         </TouchableOpacity>
       </View>

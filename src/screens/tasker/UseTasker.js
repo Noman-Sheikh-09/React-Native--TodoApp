@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { fetchData } from '../../store/todoSlice';
 export default function UseTasker() {
   const tasksData = useSelector(state=>state.todo.todo)
-  console.log(tasksData);
+ 
 const dispatch = useDispatch();
 useEffect(()=>{
 dispatch(fetchData())
@@ -17,5 +17,6 @@ dispatch(fetchData())
   return {
     adddTaskHandler,
     tasksData,
+    navigate
   };
 }

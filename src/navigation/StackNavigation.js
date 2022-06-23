@@ -6,20 +6,29 @@ import Signup from '../screens/signup/Signup';
 import Tasker from '../screens/tasker/Tasker';
 import EditScreen from '../screens/editScreen/EditScreen';
 import Form from '../components/form/Form';
-import Option from '../screens/option/Option';
+import Details from '../screens/details/Details';
 const Stack = createNativeStackNavigator();
 
 export default function StackNavigation() {
+  const auth = true;
   return (
     <>
       <Stack.Navigator screenOptions={{headerShown: false}}>
-        {/* <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Signup" component={Signup} /> */}
 
+        { !auth? 
+        <>
+          {/* <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Signup" component={Signup} /> */}
+        </>
+: 
+<>
         <Stack.Screen name="Tasker" component={Tasker} />
         <Stack.Screen name="Form" component={Form} />
+        <Stack.Screen name="Details" component={Details} />
         <Stack.Screen name="Edit" component={EditScreen} />
-        <Stack.Screen name="Option" component={Option} />
+</>
+      
+        }
       </Stack.Navigator>
     </>
   );

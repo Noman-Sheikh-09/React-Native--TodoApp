@@ -20,17 +20,16 @@ export default function UseForm() {
   // const minutes=time.getMinutes();
 
   // const dateData = new Date(year,month,currentDate,hours,minutes).toISOString();
-  // uid: uid,
   // start: dateData,
   // date: getDate(),
   // time: getTime()
   const ctaAddHandler = () => {
     let todoData = {
+
       task,
       description,
     };
     dispatch(addData(todoData, navigate));
-
     setTask('');
     setDescription('');
     // setDate('');
@@ -106,5 +105,6 @@ export default function UseForm() {
     handleTimeConfirm,
     getTime,
     getDate,
+    navigate,
   ];
 }
