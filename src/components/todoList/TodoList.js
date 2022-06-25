@@ -5,7 +5,10 @@ import UseTodoList from './UseTodoList';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import {style} from './TodoListStyle';
+import { toggleComplete } from '../../store/todoSlice';
+import { useDispatch } from 'react-redux';
 export default function TodoList({singleTodo}) {
+  const dispatch = useDispatch();
   const [
     docId,
     setDocId,
@@ -18,13 +21,14 @@ export default function TodoList({singleTodo}) {
     setDeleteDocId,
     showDeleteModal,
     ctaDeleteHandler,
-    navigate
+    navigate,
+    toggleCompletHandler
   ] = UseTodoList();
   const rightSwipe = () => {
     return (
       <View style={{flexDirection: 'row', idth: 100, height: 90}}>
         {/* Edit Button  */}
-        <TouchableOpacity onPress={()=>navigate.navigate("Edit")}>
+        <TouchableOpacity >
           <Text
             style={{
               color: 'white',
@@ -77,7 +81,8 @@ export default function TodoList({singleTodo}) {
             shadowRadius: 3.84,
 
             elevation: 5,
-          }}>
+          }}
+          className={`${singleTodo.completed ? 'completed': ""}`}>
           <View
             style={{
               flexDirection: 'row',
@@ -85,13 +90,17 @@ export default function TodoList({singleTodo}) {
               width: '90%',
               // textDecorationLine: data.TaskComplete ? 'line-through' : null
             }}>
-            <CheckBox
+            {/* <CheckBox
               disabled={false}
               value={singleTodo.TaskComplete == true ? true : toggleCheckBox}
               onValueChange={newValue =>
                 taskCompleteHandler(newValue, singleTodo.uid, singleTodo)
               }
-            />
+            /> */}
+            <TouchableOpacity onPress={()=>dispatch(toggleComplete(singleTodo))}>
+            <Text style={{fontSize:20}}> * </Text>
+
+            </TouchableOpacity>
             <Text style={{marginLeft: 10, fontSize: 16}}>
               {singleTodo?.task}
             </Text>

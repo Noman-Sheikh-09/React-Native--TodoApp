@@ -1,27 +1,31 @@
 import {View, Text} from 'react-native';
 import React from 'react';
 import {useState} from 'react';
-import { useDispatch,  } from 'react-redux';
-import { deleteData } from '../../store/todoSlice';
-import { useNavigation } from '@react-navigation/native';
+import {useDispatch} from 'react-redux';
+import {deleteData, toggleComplete} from '../../store/todoSlice';
+import {useNavigation} from '@react-navigation/native';
 export default function UseTodoList() {
-  const[docId,setDocId]=useState('');
+  const [docId, setDocId] = useState('');
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [deletedocId, setDeleteDocId] = useState('');
-const dispatch = useDispatch();
-const navigate = useNavigation();
+  const dispatch = useDispatch();
+  const navigate = useNavigation();
   const taskCompleteHandler = (newValue, docId, data) => {};
   const showDeleteModal = () => {
     setDeleteDocId(docId);
     setModalVisible(true);
   };
-  const ctaDeleteHandler =(uid)=>{
-    dispatch(deleteData(uid, navigate))
+  const ctaDeleteHandler = (uid) => {
+    dispatch(deleteData(uid));
+  };
+  const toggleCompleteHandler=()=>{
+    dispatch(toggleComplete(item))
   }
 
   return [
-    docId,setDocId,
+    docId,
+    setDocId,
     toggleCheckBox,
     setToggleCheckBox,
     taskCompleteHandler,
@@ -30,6 +34,8 @@ const navigate = useNavigation();
     deletedocId,
     setDeleteDocId,
     showDeleteModal,
-    ctaDeleteHandler,navigate
+    ctaDeleteHandler,
+    navigate,
+    toggleCompleteHandler,
   ];
 }

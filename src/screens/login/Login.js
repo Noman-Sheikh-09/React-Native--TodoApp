@@ -13,9 +13,9 @@ export default function Login() {
     loginLoading,
     setLoginLoading,
     goSignup,
-    
+    ctaLoginHandler,
   } = UseLogin();
-  console.log(email, password);
+  // console.log(email, password);
 
   return (
     <View style={style.loginContainer}>
@@ -31,17 +31,26 @@ export default function Login() {
             placeholder="Email"
             style={style.emailFeild}
             defaultValue={email}
-            onChangeText={(email) => setEmail(email)}
+            onChangeText={email => setEmail(email)}
           />
           <TextInput
             placeholder="Password"
             style={style.passwordFeild}
             defaultValue={password}
-            onChangeText={(password) => setPassword(password)}
+            onChangeText={password => setPassword(password)}
           />
         </View>
-        <TouchableOpacity style={style.loginButton} >
-          <CustomButton text="Login" />
+        <TouchableOpacity onPress={ctaLoginHandler}>
+          <Text
+            style={{
+              color: 'white',
+              backgroundColor: '#800080',
+              padding: 20,
+              borderRadius: 30,
+              textAlign: 'center',
+            }}>
+            Login
+          </Text>
         </TouchableOpacity>
         <View>
           <Text style={style.goSignup}>You don't have an account?</Text>

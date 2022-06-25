@@ -1,4 +1,4 @@
-import {View, Text, TouchableOpacity,ScrollView, Modal} from 'react-native';
+import {View, Text, TouchableOpacity, ScrollView, Modal} from 'react-native';
 import React from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {style} from './TaskerStyle';
@@ -6,7 +6,7 @@ import UseTasker from './UseTasker';
 import TodoList from '../../components/todoList/TodoList';
 
 export default function Tasker() {
-  const {adddTaskHandler,tasksData,navigate} = UseTasker();
+  const {adddTaskHandler, tasksData, navigate} = UseTasker();
   return (
     <View style={style.taskerContainer}>
       <View style={style.headerContainer}>
@@ -27,35 +27,33 @@ export default function Tasker() {
           </View>
         </View>
       </View>
-
-      <View style={style.calenderConatiner}>
-       
-        </View>
+      <View style={style.calenderConatiner}></View>
       <View style={style.taskContainer}>
-      <View style={style.totalTaskContainer}>
-        <Text style={{fontWeight:'bold',fontSize:16}}>
-            Tasks
-        </Text>
+        <View style={style.totalTaskContainer}>
+          <Text style={{fontWeight: 'bold', fontSize: 16}}>Tasks</Text>
         </View>
-      <ScrollView style={{width:'90%',marginLeft:'auto',marginRight:'auto',marginTop:20}}>
-            {
-                tasksData?.map((singleTodo)=>{
-                    return(
-                        <TouchableOpacity key={singleTodo.uid}>
-                       <TodoList singleTodo={singleTodo} />
-                       </TouchableOpacity>
-                    )
-                })
-            }
-            </ScrollView>
+        <ScrollView
+          style={{
+            width: '90%',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            marginTop: 20,
+          }}>
+          {tasksData?.map(singleTodo => {
+            return (
+              <View  key={singleTodo.uid} > 
+              <TouchableOpacity>
+                <TodoList singleTodo={singleTodo}  />
+              </TouchableOpacity>
+              </View>
+            );
+          })}
+        </ScrollView>
       </View>
 
       <View style={style.btnView}>
-        <TouchableOpacity onPress={adddTaskHandler} >
-          <Text style={style.addTaskBtn}>
-            {/* <Icon name="plus" size={20} style={style.btnAddNew} /> */}
-          + Add New Task
-          </Text>
+        <TouchableOpacity onPress={adddTaskHandler}>
+          <Text style={style.addTaskBtn}>+ Add New Task</Text>
         </TouchableOpacity>
       </View>
     </View>

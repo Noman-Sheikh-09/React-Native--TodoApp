@@ -1,9 +1,18 @@
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView} from 'react-native';
 import React from 'react';
 import { style } from './SignupStyle';
-import CustomButton from '../../components/customButton/CustomButton';
-
+import UseSignup from './UseSignup';
 export default function Signup() {
+  const [  fname,
+    setFname,
+    lname,
+    setLname,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    signupHandler]= UseSignup();
+    // console.log(email,password, fname, lname);
   return (
     <View style={style.loginContainer}>
       <View style={{flex: 1}}></View>
@@ -13,15 +22,31 @@ export default function Signup() {
         </Text>
       </View>
       <View style={style.loginFooter}>
-        <View style={style.inputContainer}>
-          <TextInput placeholder="First Name" style={style.fnameFeild} />
-          <TextInput placeholder="Last Name" style={style.lnameFeild} />
-          <TextInput placeholder="Email" style={style.emailFeild} />
-          <TextInput placeholder="Password" style={style.passwordFeild} />
-        </View>
-        <View style={style.loginButton}>
-          <CustomButton text="Signup" />
-        </View>
+        <KeyboardAvoidingView style={style.inputContainer}>
+          <TextInput placeholder="First Name"
+          value={fname}
+          onChangeText={setFname}
+          style={style.fnameFeild} />
+          <TextInput placeholder="Last Name" 
+           value={lname}
+           onChangeText={setLname}
+           style={style.lnameFeild} />
+          <TextInput placeholder="Email" 
+           value={email}
+           onChangeText={setEmail}
+           style={style.emailFeild} />
+          <TextInput placeholder="Password"
+          
+          value={password}
+          onChangeText={setPassword}
+          style={style.passwordFeild} />
+          <TouchableOpacity onPress={signupHandler} >
+            <Text style={style.signupBtn}>
+              Signup
+            </Text>
+          </TouchableOpacity>
+        </KeyboardAvoidingView>
+       
       </View>
     </View>
   );

@@ -37,4 +37,7 @@ export const style = StyleSheet.create({
         marginBottom: 15,
         fontSize:16,
       },
+      completed:{
+        color:'red'
+      }
 })

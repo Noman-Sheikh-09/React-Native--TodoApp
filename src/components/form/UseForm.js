@@ -29,7 +29,7 @@ export default function UseForm() {
       task,
       description,
     };
-    dispatch(addData(todoData, navigate));
+    dispatch(addData(todoData, navigate,));
     setTask('');
     setDescription('');
     // setDate('');

@@ -51,4 +51,12 @@ export const style = StyleSheet.create({
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
   },
+  signupBtn:{
+    backgroundColor:'#800080',
+    color:'white',
+    textAlign:'center',
+    padding:14,
+    borderRadius:30,
+    marginTop:20
+  }
 });

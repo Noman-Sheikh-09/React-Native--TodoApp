@@ -7,18 +7,19 @@ import Tasker from '../screens/tasker/Tasker';
 import EditScreen from '../screens/editScreen/EditScreen';
 import Form from '../components/form/Form';
 import Details from '../screens/details/Details';
+import { useSelector } from 'react-redux';
 const Stack = createNativeStackNavigator();
 
 export default function StackNavigation() {
-  const auth = true;
+  const isUserLoggedIn = useSelector(state=>state.auth.isUserLoggedIn)
   return (
     <>
       <Stack.Navigator screenOptions={{headerShown: false}}>
 
-        { !auth? 
+        { !isUserLoggedIn? 
         <>
-          {/* <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Signup" component={Signup} /> */}
+          <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Signup" component={Signup} />
         </>
 : 
 <>
