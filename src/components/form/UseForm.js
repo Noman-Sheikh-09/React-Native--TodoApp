@@ -5,7 +5,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {addData} from '../../store/todoSlice';
 export default function UseForm() {
   const dispatch = useDispatch();
-  const navigate = useNavigation();
+  const navigation = useNavigation();
   const [task, setTask] = useState('');
   const [addTaskLoading, setAddTaskLoading] = useState(false);
   const [description, setDescription] = useState('');
@@ -13,6 +13,8 @@ export default function UseForm() {
   const [isTimePickerVisible, setTimePickerVisibility] = useState(false);
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
+  const user = useSelector(state => state.auth.user);
+  const [completed, setCompleted] = useState();
   // const year= date.getFullYear();
   // const month=date.getMonth()+1;
   // const currentDate= date.getDate();
@@ -25,15 +27,16 @@ export default function UseForm() {
   // time: getTime()
   const ctaAddHandler = () => {
     let todoData = {
-
+      uid:user.userId,
       task,
       description,
+      completed : false
     };
-    dispatch(addData(todoData, navigate,));
+    dispatch(addData(todoData, navigation));
     setTask('');
     setDescription('');
-    // setDate('');
-    // setTime('');
+    navigation.replace('Tasker');
+    
   };
 
   const showDatePicker = () => {
@@ -105,6 +108,5 @@ export default function UseForm() {
     handleTimeConfirm,
     getTime,
     getDate,
-    navigate,
   ];
 }

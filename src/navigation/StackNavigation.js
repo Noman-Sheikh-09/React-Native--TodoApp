@@ -8,16 +8,21 @@ import EditScreen from '../screens/editScreen/EditScreen';
 import Form from '../components/form/Form';
 import Details from '../screens/details/Details';
 import { useSelector } from 'react-redux';
+import SplashScreen from '../screens/splashScreen/SplashScreen';
 const Stack = createNativeStackNavigator();
 
 export default function StackNavigation() {
   const isUserLoggedIn = useSelector(state=>state.auth.isUserLoggedIn)
+  // const isUserLoggedIn = true
   return (
     <>
-      <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Navigator screenOptions={{headerShown: false}}
+      initialRouteName="Splash"
+      >
 
         { !isUserLoggedIn? 
         <>
+      <Stack.Screen name="Splash" component={SplashScreen} />
           <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Signup" component={Signup} />
         </>

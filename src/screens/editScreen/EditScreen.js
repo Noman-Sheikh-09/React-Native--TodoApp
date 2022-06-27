@@ -1,11 +1,14 @@
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {style} from './EditScreenStyle';
 import UseEditScreen from './UseEditScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
-export default function EditScreen() {
-  const [task, setTask, description, setDescription] = UseEditScreen();
-  console.log(task, description);
+export default function EditScreen({route}) {
+  const [task, setTask, description, setDescription, setId,onClickUpdateHandler] = UseEditScreen();
+  const {id} = route.params;
+  useEffect(() => {
+    setId(id);
+  }, [id]);
   return (
     <View style={{flex: 1}}>
       <View style={{marginTop: 20}}></View>
@@ -28,7 +31,7 @@ export default function EditScreen() {
         />
       </View>
       <View style={style.checkIconView}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={onClickUpdateHandler}>
           <Text>
             <Icon name="check" size={50} style={style.checkIcon} />
           </Text>

@@ -18,12 +18,14 @@ export const style = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
     marginLeft: 90,
-    borderRadius:30
+    borderRadius:30,
+   
   },
   btnView: {
     flex: 0.15,
     flexDirection: 'row',
     borderRadius: 30,
+  
   },
   headerContainer: {
     flex: 0.15,
@@ -45,13 +47,13 @@ export const style = StyleSheet.create({
     fontSize: 20,
   },
   taskContainer: {
-    flex: 0.5,
+    flex: 1,
   },
   calenderConatiner: {
     width: '90%',
     marginRight: 'auto',
     marginLeft: 'auto',
-    flex: 0.2,
+    flex: 0,
   },
   totalTaskContainer:{
     width:'90%',

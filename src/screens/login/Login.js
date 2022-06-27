@@ -39,19 +39,21 @@ export default function Login() {
             defaultValue={password}
             onChangeText={password => setPassword(password)}
           />
-        </View>
-        <TouchableOpacity onPress={ctaLoginHandler}>
+          <TouchableOpacity onPress={ctaLoginHandler}>
           <Text
             style={{
               color: 'white',
+           marginTop:30,
               backgroundColor: '#800080',
-              padding: 20,
+              padding: 14,
               borderRadius: 30,
               textAlign: 'center',
             }}>
             Login
           </Text>
         </TouchableOpacity>
+        </View>
+        
         <View>
           <Text style={style.goSignup}>You don't have an account?</Text>
           <TouchableOpacity onPress={goSignup}>

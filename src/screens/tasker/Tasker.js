@@ -6,7 +6,7 @@ import UseTasker from './UseTasker';
 import TodoList from '../../components/todoList/TodoList';
 
 export default function Tasker() {
-  const {adddTaskHandler, tasksData, navigate} = UseTasker();
+  const {adddTaskHandler, tasksData, navigate, user} = UseTasker();
   return (
     <View style={style.taskerContainer}>
       <View style={style.headerContainer}>
@@ -21,13 +21,13 @@ export default function Tasker() {
               flexDirection: 'row',
               width: '50%',
             }}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigate.openDrawer()}>
               <Icon name="bars" size={20} color="black" />
             </TouchableOpacity>
           </View>
         </View>
       </View>
-      <View style={style.calenderConatiner}></View>
+     
       <View style={style.taskContainer}>
         <View style={style.totalTaskContainer}>
           <Text style={{fontWeight: 'bold', fontSize: 16}}>Tasks</Text>
@@ -39,15 +39,20 @@ export default function Tasker() {
             marginRight: 'auto',
             marginTop: 20,
           }}>
-          {tasksData?.map(singleTodo => {
-            return (
-              <View  key={singleTodo.uid} > 
-              <TouchableOpacity>
-                <TodoList singleTodo={singleTodo}  />
-              </TouchableOpacity>
-              </View>
-            );
-          })}
+          {tasksData?.filter(item => {
+              if (item?.uid == user?.userId) {
+                return item;
+              }
+            })
+            .map(singleTodo => {
+              return (
+                <View key={singleTodo.uid}>
+                  <TouchableOpacity>
+                    <TodoList singleTodo={singleTodo} />
+                  </TouchableOpacity>
+                </View>
+              );
+            })}
         </ScrollView>
       </View>
 

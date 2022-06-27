@@ -34,20 +34,17 @@ export const style = StyleSheet.create({
     borderTopRightRadius: 30,
     borderTopLeftRadius: 30,
   },
-  topTitle:{
-
-  
-   
-    
-    
-  
-  },
+  topTitle: {},
   goSignup: {
     color: 'black',
     alignSelf: 'center',
     marginTop: 30,
   },
-  signup: {color: '#800080', fontSize: 15, textAlign: 'center',
-fontWeight:"bold"
-},
+  signup: {
+    color: '#800080',
+    fontSize: 15,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+  
 });

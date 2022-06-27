@@ -7,7 +7,7 @@ export const fetchData = createAsyncThunk('todo/fetchData', async () => {
   const data = [];
   const snapShot = await db.collection('Tasks').get();
   snapShot.forEach(childTodo => {
-    data.push({...childTodo.data(), uid: childTodo.id});
+    data.push({...childTodo.data(), docId: childTodo.id});
   });
   return data;
 });
@@ -19,8 +19,7 @@ export const addData = createAsyncThunk(
   async (data, navigate) => {
     try {
       await db.collection('Tasks').add(data);
-      localData = {...data, uid: data.id};
-
+      const localData = {...data, uid: data.uid};
       return localData;
     } catch (error) {
       Alert.alert(error.message);
@@ -29,22 +28,25 @@ export const addData = createAsyncThunk(
 );
 export const deleteData = createAsyncThunk(
   'todoSlice/deleteData',
-  async uid => {
-    console.log(uid);
-    await db.collection('Tasks').doc(uid).delete();
+  async docId => {
+    // console.log(uid);
+    await db.collection('Tasks').doc(docId).delete();
 
-    return uid;
+    return docId;
   },
 );
 export const toggleComplete = createAsyncThunk(
   'todoSlice/toggleComplete',
-  async (data) => {
-    await db.collection('Tasks').doc(data.uid).set(data),
-      {
-        ...data,
-        completed: !todo.completed,
-      };
-
+  async (docId, updateData) => {
+    // console.log(updateData);
+    await db.collection('tasks').doc(docId).update(updateData);
+    return data;
+  },
+);
+export const updateData = createAsyncThunk(
+  'todoSlice/updateData',
+  async data => {
+    await db.collection('Tasks').doc(data.docId).update(data);
     return data;
   },
 );
@@ -55,8 +57,16 @@ const todoSlice = createSlice({
     todo: [],
     error: false,
     pending: false,
+    isUpdate:false,
+    updateTodo:{},
   },
-  reducers: {},
+  reducers: {
+    setIsUpdate:(state,action)=>{
+      console.log("Update Reducer");
+      state.isUpdate = true;
+      state.updateTodo = action.payload;
+    }
+  },
   extraReducers: {
     [fetchData.fulfilled]: (state, action) => {
       state.todo = action.payload;
@@ -71,6 +81,7 @@ const todoSlice = createSlice({
       state.pending = true;
     },
     [addData.fulfilled]: (state, action) => {
+      // console.log('add reducer', action.payload);
       state.todo = [...state.todo, action.payload];
     },
     [addData.rejected]: (state, action) => {
@@ -80,25 +91,33 @@ const todoSlice = createSlice({
     [addData.pending]: (state, action) => {
       state.pending = true;
     },
-  },
-  [deleteData.fulfilled]: (state, action) => {
-    state.todo = dataAfterDelete;
-
-    const dataAfterDelete = state.todo.filter(
-      singleItem => singleItem.uid !== action.payload,
-    );
-    return dataAfterDelete;
-  },
-
-  [toggleComplete.fulfilled]: (state, action) => {
-    const completedata = state.todo.map((singleItem) => {
-      if (singleItem.uid === action.payload.uid) {
-        return {...singleItem, completed: !action.payload.completed};
-      } else return singleItem;
-    });
-    state.todo = completedata;
- console.log("singleItem",singleItem)
-
+    [deleteData.fulfilled]: (state, action) => {
+      const dataAfterDelete = state.todo.filter(
+        singleItem => singleItem.docId !== action.payload,
+      );
+      state.todo = dataAfterDelete;
+    },
+    [updateData.fulfilled]: (state, action) => {
+      const updatedData = state.todo.map(singleItem => {
+        if (action.payload.docId === singleItem.docId) {
+          return {...singleItem,...action.payload};
+        } else {
+          return singleItem;
+        }
+      });
+console.log("updated data",updatedData);
+      state.todo = updatedData;
+    },
+    // [toggleComplete.fulfilled]: (state, action) => {
+    //   state.todo.map(item => {
+    //     if (item.docId === action.payload.docId) {
+    //       return action.payload.updateData;
+    //     } else {
+    //       return item;
+    //     }
+    //   });
+    // },
   },
 });
+export const { setIsUpdate } = todoSlice.actions;
 export default todoSlice.reducer;

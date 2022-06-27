@@ -5,30 +5,31 @@ import UseTodoList from './UseTodoList';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import {style} from './TodoListStyle';
-import { toggleComplete } from '../../store/todoSlice';
-import { useDispatch } from 'react-redux';
+import {toggleComplete} from '../../store/todoSlice';
+import {useDispatch} from 'react-redux';
 export default function TodoList({singleTodo}) {
   const dispatch = useDispatch();
   const [
-    docId,
-    setDocId,
-    toggleCheckBox,
-    setToggleCheckBox,
-    taskCompleteHandler,
-    modalVisible,
-    setModalVisible,
-    deletedocId,
-    setDeleteDocId,
-    showDeleteModal,
-    ctaDeleteHandler,
-    navigate,
-    toggleCompletHandler
+    {
+      docId,
+      setDocId,
+      toggleCheckBox,
+      setToggleCheckBox,
+      taskCompleteHandler,
+      modalVisible,
+      setModalVisible,
+      deletedocId,
+      setDeleteDocId,
+      showDeleteModal,
+      ctaDeleteHandler,
+      ctaUpdateHandler,
+    },
   ] = UseTodoList();
   const rightSwipe = () => {
     return (
       <View style={{flexDirection: 'row', idth: 100, height: 90}}>
         {/* Edit Button  */}
-        <TouchableOpacity >
+        <TouchableOpacity onPress={() => ctaUpdateHandler(singleTodo.docId)}>
           <Text
             style={{
               color: 'white',
@@ -43,7 +44,7 @@ export default function TodoList({singleTodo}) {
           </Text>
         </TouchableOpacity>
         {/* Delete Button  */}
-        <TouchableOpacity onPress={() => showDeleteModal(singleTodo.uid)}>
+        <TouchableOpacity onPress={() => showDeleteModal(singleTodo.docId)}>
           <Text
             style={{
               color: 'white',
@@ -81,8 +82,7 @@ export default function TodoList({singleTodo}) {
             shadowRadius: 3.84,
 
             elevation: 5,
-          }}
-          className={`${singleTodo.completed ? 'completed': ""}`}>
+          }}>
           <View
             style={{
               flexDirection: 'row',
@@ -90,20 +90,23 @@ export default function TodoList({singleTodo}) {
               width: '90%',
               // textDecorationLine: data.TaskComplete ? 'line-through' : null
             }}>
-            {/* <CheckBox
+            <View>
+              {/* <CheckBox
               disabled={false}
               value={singleTodo.TaskComplete == true ? true : toggleCheckBox}
               onValueChange={newValue =>
-                taskCompleteHandler(newValue, singleTodo.uid, singleTodo)
+                taskCompleteHandler(newValue, singleTodo.docId, singleTodo)
               }
             /> */}
-            <TouchableOpacity onPress={()=>dispatch(toggleComplete(singleTodo))}>
-            <Text style={{fontSize:20}}> * </Text>
 
-            </TouchableOpacity>
-            <Text style={{marginLeft: 10, fontSize: 16}}>
-              {singleTodo?.task}
-            </Text>
+              <Text style={{marginLeft: 10, fontSize: 16,color:"black"}}>
+                {singleTodo?.task}
+              </Text>
+
+              <Text style={{marginLeft: 10, fontSize: 16,color:"grey"}}>
+                {singleTodo?.description}
+              </Text>
+            </View>
           </View>
         </View>
       </Swipeable>
@@ -127,7 +130,8 @@ export default function TodoList({singleTodo}) {
                   onPress={() => setModalVisible(!modalVisible)}>
                   <Text style={style.textStyle}>No</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => ctaDeleteHandler(singleTodo.uid)}>
+                <TouchableOpacity
+                  onPress={() => ctaDeleteHandler(singleTodo.docId)}>
                   <Text style={style.textStyle}>Yes</Text>
                 </TouchableOpacity>
               </View>

@@ -5,7 +5,7 @@ import {style} from './FormStyle';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import TimeIcon from 'react-native-vector-icons/Entypo';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
-export default function Form() {
+export default function Form({navigation}) {
   const [
     task,
     setTask,
@@ -30,7 +30,6 @@ export default function Form() {
     handleTimeConfirm,
     getTime,
     getDate,
-    navigate
   ] = UseForm();
 
   return (
@@ -117,7 +116,7 @@ export default function Form() {
       </View>
 
       <View style={style.checkIconView}>
-        <TouchableOpacity onPress={ctaAddHandler}>
+        <TouchableOpacity onPress={()=>ctaAddHandler(navigation)}>
           <Text>
             <Icon name="check" size={50} style={style.checkIcon} />
           </Text>

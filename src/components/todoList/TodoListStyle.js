@@ -5,7 +5,7 @@ export const style = StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        marginTop: 22,
+      
       },
       modalView: {
         margin: 20,
@@ -37,7 +37,5 @@ export const style = StyleSheet.create({
         marginBottom: 15,
         fontSize:16,
       },
-      completed:{
-        color:'red'
-      }
+      
 })
