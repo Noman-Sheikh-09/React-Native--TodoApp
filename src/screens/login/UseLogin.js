@@ -22,7 +22,7 @@ export default function UseLogin() {
       email: email,
       password: password,
     };
-dispatch(doLogin(userData))
+dispatch(doLogin(userData,setLoginLoading))
    console.log("userdata in hook dispatch",userData)
   };
 

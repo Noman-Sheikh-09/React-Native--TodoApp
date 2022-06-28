@@ -16,13 +16,17 @@ export const fetchData = createAsyncThunk('todo/fetchData', async () => {
 
 export const addData = createAsyncThunk(
   'todoSlice/addData',
-  async (data, navigate) => {
+  async (data, {}) => {
     try {
+
       await db.collection('Tasks').add(data);
       const localData = {...data, uid: data.uid};
       return localData;
     } catch (error) {
       Alert.alert(error.message);
+    }
+    finally{
+      
     }
   },
 );

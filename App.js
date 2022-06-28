@@ -10,7 +10,6 @@ export default function App() {
     <GestureHandlerRootView style={{ flex: 1 }}>
     <Provider store={store}>
       <NavigationContainer>
-        {/* <StackNavigation /> */}
         <Navigation />
       </NavigationContainer>
     </Provider>

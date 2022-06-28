@@ -1,8 +1,8 @@
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import React from 'react';
 import {style} from './LoginStyle';
-import CustomButton from '../../components/customButton/CustomButton';
 import UseLogin from './UseLogin';
+import { DotIndicator } from 'react-native-indicators';
 
 export default function Login() {
   const {
@@ -39,6 +39,9 @@ export default function Login() {
             defaultValue={password}
             onChangeText={password => setPassword(password)}
           />
+          {
+            !loginLoading?
+          
           <TouchableOpacity onPress={ctaLoginHandler}>
           <Text
             style={{
@@ -51,9 +54,16 @@ export default function Login() {
             }}>
             Login
           </Text>
-        </TouchableOpacity>
+        </TouchableOpacity>:
+        <View style={{width:'100%',alignItems:'center',marginTop:20}}>
+     <DotIndicator />
+          </View>
+}
         </View>
-        
+
+        <View>
+
+        </View>
         <View>
           <Text style={style.goSignup}>You don't have an account?</Text>
           <TouchableOpacity onPress={goSignup}>

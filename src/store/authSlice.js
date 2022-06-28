@@ -1,8 +1,9 @@
 import {createSlice, createAsyncThunk} from '@reduxjs/toolkit';
 import auth from '@react-native-firebase/auth';
 import {db} from '../config/Firebase';
-export const doLogin = createAsyncThunk('todoSlice/doLogin', async userData => {
+export const doLogin = createAsyncThunk('todoSlice/doLogin', async (userData) => {
   try {
+   
     const userResponse = await auth().signInWithEmailAndPassword(
       userData?.email,
       userData?.password,
@@ -20,6 +21,7 @@ export const doLogin = createAsyncThunk('todoSlice/doLogin', async userData => {
   } catch (error) {
     console.log(error.message);
   }
+  
 });
 
 export const doLogout = createAsyncThunk('users/doLogout', async () => {

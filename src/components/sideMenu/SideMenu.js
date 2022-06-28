@@ -21,12 +21,33 @@ export default function SideMenu(props) {
             }}
           />
         </View>
+        <View>
+          <Text
+            style={{
+              fontSize: 30,
+              fontWeight: 'bold',
+              padding: 20,
+              color: '#800080',
+            }}>
+            Welcome!
+          </Text>
+        </View>
         <View style={style.logoutContainer}>
           <TouchableOpacity
             style={{display: 'flex', flexDirection: 'row'}}
             onPress={logoutHandler}>
             {/* <Icon name="logout-variant" size={30} color={"#FF6347"} /> */}
-            <Text style={{fontSize: 20, marginLeft: 10, color: '#800080'}}>
+            <Text
+              style={{
+                fontSize: 20,
+                marginLeft: 10,
+                color: 'white',
+                backgroundColor: '#800080',
+                paddingLeft: 20,
+                paddingRight: 20,
+                padding: 10,
+                borderRadius: 30,
+              }}>
               Logout
             </Text>
           </TouchableOpacity>

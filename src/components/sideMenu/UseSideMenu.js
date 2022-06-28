@@ -9,6 +9,7 @@ export default function UseSideMenu() {
 
 const logoutHandler=()=>{
   dispatch(doLogout())
+  // navigate.closeDrawer();
 }
 
   return [

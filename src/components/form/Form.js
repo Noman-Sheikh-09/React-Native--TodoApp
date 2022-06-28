@@ -56,7 +56,7 @@ export default function Form({navigation}) {
         />
       </View>
       {/* Calender  */}
-      <View>
+      {/* <View>
         <TextInput
           placeholder="Set Your Date"
           style={style.input}
@@ -113,7 +113,7 @@ export default function Form({navigation}) {
             onCancel={hideTimePicker}
           />
         </View>
-      </View>
+      </View> */}
 
       <View style={style.checkIconView}>
         <TouchableOpacity onPress={()=>ctaAddHandler(navigation)}>
